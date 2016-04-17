@@ -6,7 +6,7 @@ Something analogous to an inode for Copy-on-Write (CoW, `cp --reflink`) files.
 Discover when two files on a CoW filesystem share identical physical data.
 
 Why's it called `fienode`? It's analogous to an inode,
-but computed using **Fi**le **E**xtents.
+but derived from **Fi**le **E**xtents.
 
 #### Warning: Proof-of-concept. Alpha quality software, use at your own risk.
 
