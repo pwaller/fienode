@@ -9,9 +9,17 @@ Discover when two files on a CoW filesystem share identical physical data.
 
 ## Installation
 
+#### From source
+
 ```
 go get github.com/pwaller/fienode
 ```
+
+#### Binary Download
+
+See [releases](https://github.com/pwaller/fienode/releases/).
+
+* [fienode-linux-amd64]( https://github.com/pwaller/fienode/releases/download/v1.0/fienode-linux-amd64) v1.0
 
 ## Usage: `fienode <filename>...`
 
