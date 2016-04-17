@@ -10,7 +10,10 @@ but derived from **Fi**le **E**xtents.
 
 #### Warning: Proof-of-concept. Alpha quality software, use at your own risk.
 
-**See Also**: [`filefrag -v`](https://en.wikipedia.org/wiki/E2fsprogs)
+**See Also**:
+
+* [`sharedextents`](https://github.com/pwaller/sharedextents), for comparing physical extents between two files
+* [`filefrag -v`](https://en.wikipedia.org/wiki/E2fsprogs), for listing physical extents
 
 ## Installation
 
