@@ -10,6 +10,8 @@ but computed using **Fi**le **E**xtents.
 
 #### Warning: Proof-of-concept. Alpha quality software, use at your own risk.
 
+**See Also**: [`filefrag -v`](https://en.wikipedia.org/wiki/E2fsprogs)
+
 ## Installation
 
 #### From source
