@@ -68,7 +68,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		_, err = fmt.Println(filename, fienode)
+		_, err = fmt.Println(fienode, filename)
 		if err != nil {
 			log.Fatal(err)
 		}
