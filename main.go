@@ -11,10 +11,10 @@ import (
 	"github.com/frostschutz/go-fibmap"
 )
 
-func getExtents(filename string) ([]fibmap.Extent, error) {
+func getExtents(filename string) ([]fibmap.Extent, int64, error) {
 	fd, err := os.Open(filename)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 	defer fd.Close()
 
@@ -22,12 +22,12 @@ func getExtents(filename string) ([]fibmap.Extent, error) {
 
 	bsz, errno := fm.Figetbsz()
 	if errno != 0 {
-		return nil, fmt.Errorf("figetbsz: %v", errno)
+		return nil, 0, fmt.Errorf("figetbsz: %v", errno)
 	}
 
 	stat, err := fd.Stat()
 	if err != nil {
-		return nil, fmt.Errorf("fstat: %v", err)
+		return nil, 0, fmt.Errorf("fstat: %v", err)
 	}
 	size := stat.Size()
 
@@ -35,18 +35,19 @@ func getExtents(filename string) ([]fibmap.Extent, error) {
 
 	extents, errno := fm.Fiemap(blocks)
 	if errno != 0 {
-		return nil, fmt.Errorf("fiemap: %v", errno)
+		return nil, 0, fmt.Errorf("fiemap: %v", errno)
 	}
-	return extents, nil
+	return extents, size, nil
 }
 
 func getFIENode(filename string) (string, error) {
-	extents, err := getExtents(filename)
+	extents, size, err := getExtents(filename)
 	if err != nil {
 		return "", err
 	}
 
 	w := crypto.SHA1.New()
+	fmt.Fprintf(w, "%d\n", size)
 	for _, e := range extents {
 		fmt.Fprintf(w, "%d + %d\n", e.Physical>>12, e.Length>>12)
 	}
